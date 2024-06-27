@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>
+        <%= myTitle %>
+    </title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <%- include('./Components/header.ejs',{current:'info'}) %>
+        <!-- MAIN -->
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>full name</th>
+                        <th>gender</th>
+                        <th>country</th>
+                        <th>phone</th>
+                        <th>last updated</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% resArr.forEach((el,index) => { %>
+                        <tr>
+                            <td scope="row"><%= index+1 %></td>
+                            <td><%= el.first + ' ' + el.last %></td>
+                            <td><%= el.gender %></td>
+                            <td><%= el.country %></td>
+                            <td><%= el.phone %></td>
+                            <td>2 days ago</td>
+                            <td class="flx-center gap-10 btnsBox">
+                                <a href="/view">
+                                    <div class="flx-center btnX" title="view">v</div>
+                                </a>
+                                <a href="/edit">
+                                    <div class="flx-center btnX" title="edit">e</div>
+                                </a>
+                                <a href="">
+                                    <div class="flx-center btnX" title="delete">d</div>
+                                </a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </main>
+        <%- include('./Components/script.ejs') %>
+</body>
+
+</html>

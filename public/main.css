@@ -1,0 +1,296 @@
+:root {
+    --mainClr: darkslateblue;
+    --mainClr-light: rgb(112, 98, 205);
+    --mainClr-dark: rgb(46, 39, 93);
+    --mainClr-trans: rgba(71, 61, 139, 0.501);
+}
+.dark {
+    --mainClr: #333;
+    --mainClr-light: #727272;
+    --mainClr-dark: #000;
+    --mainClr-trans: #0000005d;
+}
+
+
+body {
+    font-family: sans-serif;
+    background-color: #eee;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+input,
+input:focus {
+    border: none;
+    outline: none;
+}
+select {
+    border: none;
+    outline: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+.container {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+
+@media (max-width: 776px) {
+    .container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+/*  SMALL LIBRARY  */
+.flx-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flx-col {
+    flex-direction: column;
+    align-items: center;
+}
+
+.flx-arround {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.flx-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    padding: 5px 10px;
+    border: 2px solid;
+    border-bottom: 4px solid;
+    width: fit-content;
+    border-radius: 5px;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+@media (max-width: 442px) {
+    .btn {
+        font-size: 12px;
+        border: 1px solid;
+        border-bottom: 3px solid;
+    }
+}
+.btn:hover {
+    scale: 1.02;
+}
+.drk-btn {
+    background-color: var(--mainClr);
+    color: white;
+}
+.light-btn {
+    color: var(--mainClr);
+    background-color: white;
+}
+.danger-btn {
+    background-color: indianred;
+    color: white;
+    transition: all .5s;
+}
+.danger-btn:hover {
+    scale: 1.1;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+.gap-10 {
+    gap: 10px;
+}
+
+/* header */
+header {
+    background-color: var(--mainClr-dark);
+    color: #fff;
+    padding: 10px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+header .logo {
+
+}
+header .logo h2 {
+    text-transform: capitalize;
+    font-size: 24px;
+}
+@media(max-width: 800px) {
+    header .logo {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}
+@media(max-width: 515px) {
+    header {
+        justify-content: center;
+        gap: 14px;
+    }
+}
+header ul.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+header ul.nav a {}
+header ul.nav a li {
+    font-size: 20px;
+    text-transform: capitalize;
+    padding: 4px 10px;
+    border-bottom: 3px solid transparent;
+    border-radius: 3px;
+    transition: all .5s;
+}
+header ul.nav a li:hover,
+header ul.nav a li.active {
+    background-color: var(--mainClr-light);
+    border-bottom-color: unset;
+}
+
+header form.search {}
+header form.search input {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #eee;
+    border: 2px solid var(--mainClr-trans);
+    border-bottom: 4px solid var(--mainClr-trans);
+    font-weight: bold;
+    color: var(--mainClr-dark);
+}
+header form.search button {
+    padding: 5px 10px;
+    background-color: var(--mainClr-light);
+    color: inherit;
+}
+
+
+
+main {
+    min-height: 87vh;
+    padding: 0 60px;
+    background-color: var(--mainClr-trans);
+    position: relative;
+}
+main table {
+    position: absolute;
+    padding: 5px;
+    width: 90vw;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid #eee;
+}
+main table tr {
+background-color: #eee;
+}
+main table tr th {
+    padding: 5px;
+}
+main table tr td {
+    padding: 5px;
+}
+td.btnsBox {
+
+}
+td.btnsBox .btnX {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: var(--mainClr);
+    color: #fff;
+}
+main table tr td a  {}
+main table tr td a .btnX {}
+
+
+main form {
+    background-color: var(--mainClr-trans);
+    padding: 25px 10px 5px 10px;
+}
+main form .lin {
+    margin-bottom: 10px;
+}
+main form .lin label {
+    color: #fff;
+    display: inline-block;
+    width: 100px;
+}
+main form .lin input {
+    width: 200px;
+    padding: 3px 0;
+    border-radius: 5px;
+    text-indent: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+main form .lin  select {
+    width: 200px;
+    padding: 3px 0;
+    border-radius: 5px;
+    text-indent: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+main form .lin  select option {
+    background-color: var(--mainClr);
+    color: #fff;
+}
+
+
+
+
+main .view {
+    background-color: var(--mainClr-trans);
+    padding: 25px 10px 5px 10px;
+}
+main h2.main {
+    color: var(--mainClr-dark);
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
+}
+main .view .lin {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+main .view .lin .key {
+    width: 130px;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    font-size: 15px;
+    color: #fff;
+}
+main .view .lin .value {
+    width: 250px;
+    color: #aaa;
+    text-transform: capitalize;
+}
