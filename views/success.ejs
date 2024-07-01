@@ -6,30 +6,16 @@
     <link rel="stylesheet" href="main.css">
     <title> <%= myTitle %> </title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #eee;
-        }
-        .success {
-            padding: 15px 25px;
-            border-radius: 10px;
-            background-color: #fff;
-            color: forestgreen;
-            font-weight: bold;
-            text-align: center;
-            font-size: 32px;
-            text-transform: capitalize;
-        }
+        
     </style>
 </head>
-<body>
+<body class="success-body flx-center">
     <div class="success">
-        data sended successfully 
-    </div><br><hr>
-    <a href="/"><div class="btn dark-btn">home</div></a>
-    <a href="/add"><div class="btn dark-btn">add another customer</div></a>
+        <div class="mess"> data successfuly processed </div>
+        <div class="btns flx-between">
+            <a href="/"><div class="btn light-btn">home</div></a>
+            <a href="/add"><div class="btn light-btn">add another customer</div></a>
+        </div>
+    </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../main.css">
     <title>
         <%= myTitle %>
     </title>
@@ -15,29 +15,29 @@
 
 <body>
     <!-- HEADER -->
-    <%- include('./Components/header.ejs',{current:'add'}) %>
+    <%- include('../Components/header.ejs', {current:'edit'}) %>
     <!-- MAIN -->
     <main>
-        <form action="/add" class="add-form" method="post">
+        <form action="/edit/<%= resObj._id %>?_method=PUT" method="post" class="add-form">
             <div class="lin">
-                <label for="first">first name</label>
-                <input type="text" name="first" id="first" placeholder="moustafa ..">
+                <label for="">first name</label>
+                <input type="text" name="first" id="" placeholder="moustafa .." value="<%= resObj.first %>">
             </div>
             <div class="lin">
-                <label for="last">last name</label>
-                <input type="text" name="last" id="last" placeholder="saed ..">
+                <label for="">last name</label>
+                <input type="text" name="last" id="" placeholder="saed .." value="<%= resObj.last %>">
             </div>
             <div class="lin">
-                <label for="phone">phone</label>
-                <input type="text" name="phone" id="phone" placeholder="01x xxx xxxx">
+                <label for="">phone</label>
+                <input type="text" name="phone" id="" placeholder="01x xxx xxxx" value="<%= resObj.phone %>">
             </div>
             <div class="lin">
-                <label for="email">email</label>
-                <input type="email" name="email" id="email" placeholder="xx@xx.com">
+                <label for="">email</label>
+                <input type="email" name="email" id="" placeholder="xx@xx.com" value="<%= resObj.email %>">
             </div>
             <div class="lin">
                 <label for="">country</label>
-                <select id="country" name="country" class="form-control">
+                <select id="country" name="country" class="form-control" value="<%= resObj.country %>">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Åland Islands">Åland Islands</option>
                     <option value="Albania">Albania</option>
@@ -285,18 +285,22 @@
                 </select>
             </div>
             <div class="lin">
-                <label for="gender">gender</label>
-                <select name="gender" id="gender">
-                    <option value="male">male</option>
-                    <option value="female">female</option>
+                <label for="">gender</label>
+                <select name="gender" id="">
+                    <option value="male" <%= resObj.gender === 'male'? 'selected':'' %>>male</option>
+                    <option value="female" <%= resObj.gender === 'female'? 'selected':'' %>>female</option>
                 </select>
             </div>
             <div class="lin">
-                <button type="submit" class="btn drk-btn">add it</button>
+                <button type="submit" class="btn drk-btn">update</button>
             </div>
         </form>
+        <form action="/edit/<%= resObj._id %>?_method=DELETE" method="post">
+            <button type="submit" class="btn danger-btn" title="delete">delete</button>
+        </form>
+        <%- include('../Components/script.ejs') %>
     </main>
-    <%- include('./Components/script.ejs') %>
+
 </body>
 
 </html>

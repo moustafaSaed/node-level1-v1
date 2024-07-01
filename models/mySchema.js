@@ -11,7 +11,9 @@ const articleSchema = new Schema({
     email: String,
     country: String,
     gender: String,
-});
+},
+{timestamps:true}
+);
 
 
 // Create a model based on that schema

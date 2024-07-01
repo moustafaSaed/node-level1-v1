@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../main.css">
     <title>
         <%= myTitle %>
     </title>
@@ -15,38 +15,38 @@
 
 <body>
     <!-- HEADER -->
-    <%- include('./Components/header.ejs', {current:'view'}) %>
+    <%- include('../Components/header.ejs', {current:'view'}) %>
     <!-- MAIN -->
     <main class="main-view">
-        <h2 class="main">moustafa's info</h2>
+        <h2 class="main"><%= resObj.first + "'s info"%></h2> 
         <div class="view">
             <div class="lin">
                 <div class="key">name</div>
-                <div class="value">moustafa</div>
+                <div class="value"><%= resObj.first + " " + resObj.last %></div>
             </div>
             <div class="lin">
                 <div class="key">email</div>
-                <div class="value">moustafa@gmail</div>
+                <div class="value"><%= resObj.email %></div>
             </div>
             <div class="lin">
-                <div class="key">age</div>
-                <div class="value">24</div>
+                <div class="key">phone</div>
+                <div class="value"><%= resObj.phone %></div>
             </div>
             <div class="lin">
                 <div class="key">country</div>
-                <div class="value">Egypt</div>
+                <div class="value"><%= resObj.country %></div>
             </div>
             <div class="lin">
                 <div class="key">created on</div>
-                <div class="value">moustafa</div>
+                <div class="value"><%= moment(resObj.createdAt).fromNow() %></div>
             </div>
             <div class="lin">
                 <div class="key">last update</div>
-                <div class="value">moustafa</div>
+                <div class="value"><%= moment(resObj.updatedAt).fromNow() %></div>
             </div>
         </div>
     </main>
-    <%- include('./Components/script.ejs') %>
+    <%- include('../Components/script.ejs') %>
 </body>
 
 </html>

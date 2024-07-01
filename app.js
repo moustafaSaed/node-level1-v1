@@ -1,12 +1,15 @@
-const express = require('express')
-const app = express()
-const port = 4000
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 4000;
 const mongoose = require('mongoose');
+const moment = require('moment'); // require
 const User = require("./models/mySchema") // my DataBase
+var methodOverride = require('method-override') // for delete an item from db DEL
 
 app.set('view engine', 'ejs') // to be able to write js with html
 app.use(express.urlencoded({ extended: true })); // send data to db #2
 app.use(express.static('public')) // to create public file to put css/js/images in it
+app.use(methodOverride('_method')) // // for delete an item from db DEL
 
 // for liveReload   -- Start
 const path = require("path");
@@ -28,7 +31,7 @@ app.get('/', (req, res) => {
     User.find() // get data from User
         .then((result) => { // if get data success
             // result : array of objects
-            res.render("home", { myTitle: 'Mous | Home', resArr: result});
+            res.render("home", { myTitle: 'Mous | Home', resArr: result, moment:moment});
         }
         )
         .catch((err) => { // if error
@@ -36,19 +39,67 @@ app.get('/', (req, res) => {
         }
         )
 })
-app.get('/add', (req, res) => {
-    res.render("add", { myTitle: 'Mous | add' });
-})
-app.get('/edit', (req, res) => {
-    res.render("edit", { myTitle: 'Mous | edit' });
-})
-app.get('/view', (req, res) => {
-    res.render("view", { myTitle: 'Mous | view' });
-})
-app.get('/success', (req, res) => {
-    res.render("success", { myTitle: 'Mous | success' });
+app.get('/user/add', (req, res) => {
+    res.render("user/add", { myTitle: 'Mous | add' });
 })
 
+app.get('/success', (req, res) => {
+    res.render("success", { myTitle: 'Mous | success'});
+})
+// should be the last get 
+app.get('/edit/:id', (req, res) => {
+    User.findById(req.params.id)
+        .then((result) => {
+            // result in only an object
+            console.log("-----------------------------------");
+            console.log(result);
+            res.render("user/edit", { myTitle: 'Mous | edit', resObj: result, });
+        }
+        )
+        .catch((err) => {
+            console.log(err);
+        }
+        )
+})
+app.put('/edit/:id', (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body)
+        .then((result) => {
+            res.redirect('/success');
+        }
+        )
+        .catch((err) => {
+            console.log(err);
+        }
+        )
+})
+app.get('/view/:id', (req, res) => {
+    User.findById(req.params.id)
+        .then((result) => {
+            // result in only an object
+            console.log("-----------------------------------");
+            console.log(result);
+            res.render("user/view", { myTitle: 'Mous | view', resObj: result, moment: moment, });
+        }
+        )
+        .catch((err) => {
+            console.log(err);
+        }
+        )
+})
+// DELETE REQUEST
+app.delete('/edit/:id',(req, res) => {
+    User.findByIdAndDelete(req.params.id)
+        .then(() => {
+            console.log('deleted successfully  ..');
+            res.redirect('/');
+        }
+        )
+        .catch((err) => {
+            console.log(err);
+        }
+        )
+}
+)
 mongoose.connect('mongodb+srv://mostafasaed060:NKWmN9zuPy3X9d1y@mouscluster.w66om3n.mongodb.net/all-data?retryWrites=true&w=majority&appName=mousCluster').then(() => { // do if connect success
     app.listen(port, () => {
         console.log(`http://localhost:${port}/`);
@@ -58,10 +109,8 @@ mongoose.connect('mongodb+srv://mostafasaed060:NKWmN9zuPy3X9d1y@mouscluster.w66o
 })
 
 app.post('/add', (req, res) => {
-    const user = new User(req.body); // save data in variable to save in db
-    console.log('req.body :: ' + req.body);
-    user
-        .save() // data saved in db
+    User
+        .create(req.body) // data saved in db
         .then(result => { // do if success
             console.log("saved successfuly");
             res.redirect("/success");

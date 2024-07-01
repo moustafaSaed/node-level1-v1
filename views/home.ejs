@@ -18,42 +18,63 @@
     <%- include('./Components/header.ejs',{current:'info'}) %>
         <!-- MAIN -->
         <main>
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>full name</th>
-                        <th>gender</th>
-                        <th>country</th>
-                        <th>phone</th>
-                        <th>last updated</th>
-                        <th>actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% resArr.forEach((el,index) => { %>
+            <% if (resArr.length === 0) { %>
+                <div class="no-data">
+                    <h1 class="info">there is no data available</h1>
+                    <a href="/user/add"><div class="btn light-btn">go to add data</div></a>
+                </div>
+            <% } %>
+
+            <% if (resArr.length > 0) { %>
+                <table>
+                    <thead>
                         <tr>
-                            <td scope="row"><%= index+1 %></td>
-                            <td><%= el.first + ' ' + el.last %></td>
-                            <td><%= el.gender %></td>
-                            <td><%= el.country %></td>
-                            <td><%= el.phone %></td>
-                            <td>2 days ago</td>
-                            <td class="flx-center gap-10 btnsBox">
-                                <a href="/view">
-                                    <div class="flx-center btnX" title="view">v</div>
-                                </a>
-                                <a href="/edit">
-                                    <div class="flx-center btnX" title="edit">e</div>
-                                </a>
-                                <a href="">
-                                    <div class="flx-center btnX" title="delete">d</div>
-                                </a>
-                            </td>
+                            <th>#</th>
+                            <th>full name</th>
+                            <th class="gender-td">gender</th>
+                            <th class="country-td">country</th>
+                            <th class="phone-td">phone</th>
+                            <th class="date-td">last updated</th>
+                            <th>actions</th>
                         </tr>
-                    <% }) %>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <% resArr.forEach((el,index)=> { %>
+                            <tr class="data">
+                                <td scope="row">
+                                    <%= index+1 %>
+                                </td>
+                                <td>
+                                    <%= el.first + ' ' + el.last %>
+                                </td>
+                                <td class="gender-td">
+                                    <%= el.gender %>
+                                </td>
+                                <td class="country-td">
+                                    <%= el.country %>
+                                </td>
+                                <td class="phone-td">
+                                    <%= el.phone %>
+                                </td>
+                                <td class="date-td">
+                                    <%= moment(el.updatedAt).fromNow() %>
+                                </td>
+                                <td class="flx-center gap-10 btnsBox">
+                                    <a href="/view/<%= el._id %>">
+                                        <div class="flx-center btnX" title="view">v</div>
+                                    </a>
+                                    <a href="/edit/<%= el._id %>">
+                                        <div class="flx-center btnX" title="edit">e</div>
+                                    </a>
+                                    <form action="/edit/<%= el._id %>?_method=DELETE" method="post">
+                                        <button type="submit" class="flx-center btnX" title="delete">d</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            <% } %>
         </main>
         <%- include('./Components/script.ejs') %>
 </body>

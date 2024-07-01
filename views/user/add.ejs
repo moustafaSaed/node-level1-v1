@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../main.css">
     <title>
         <%= myTitle %>
     </title>
@@ -15,25 +15,25 @@
 
 <body>
     <!-- HEADER -->
-    <%- include('./Components/header.ejs', {current:'edit'}) %>
+    <%- include('../Components/header.ejs',{current:'add'}) %>
     <!-- MAIN -->
     <main>
-        <form action="" class="add-form">
+        <form action="/add" class="add-form" method="post">
             <div class="lin">
-                <label for="">first name</label>
-                <input type="text" name="first" id="" placeholder="moustafa ..">
+                <label for="first">first name</label>
+                <input type="text" name="first" id="first" placeholder="moustafa ..">
             </div>
             <div class="lin">
-                <label for="">last name</label>
-                <input type="text" name="last" id="" placeholder="saed ..">
+                <label for="last">last name</label>
+                <input type="text" name="last" id="last" placeholder="saed ..">
             </div>
             <div class="lin">
-                <label for="">phone</label>
-                <input type="text" name="phone" id="" placeholder="01x xxx xxxx">
+                <label for="phone">phone</label>
+                <input type="text" name="phone" id="phone" placeholder="01x xxx xxxx">
             </div>
             <div class="lin">
-                <label for="">email</label>
-                <input type="email" name="email" id="" placeholder="xx@xx.com">
+                <label for="email">email</label>
+                <input type="email" name="email" id="email" placeholder="xx@xx.com">
             </div>
             <div class="lin">
                 <label for="">country</label>
@@ -285,20 +285,19 @@
                 </select>
             </div>
             <div class="lin">
-                <label for="">gender</label>
-                <select name="gender" id="">
+                <label for="gender">gender</label>
+                <select name="gender" id="gender">
                     <option value="male">male</option>
                     <option value="female">female</option>
                 </select>
             </div>
-            <div class="lin">
-                <button type="submit" class="btn drk-btn">update</button>
-                <button type="btn" class="btn danger-btn">delete</button>
+            <div class="lin flx-between">
+                <button type="submit" class="btn drk-btn">add it</button>
+                <a href="/"><div class="btn light-btn">return to home</div></a>
             </div>
         </form>
-        <%- include('./Components/script.ejs') %>
     </main>
-
+    <%- include('../Components/script.ejs') %>
 </body>
 
 </html>
