@@ -38,6 +38,7 @@
             <div class="lin">
                 <label for="">country</label>
                 <select id="country" name="country" class="form-control" value="<%= resObj.country %>">
+                    <option selected hidden disabled>Choose  . . .</option>
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Åland Islands">Åland Islands</option>
                     <option value="Albania">Albania</option>
@@ -287,6 +288,7 @@
             <div class="lin">
                 <label for="">gender</label>
                 <select name="gender" id="">
+                    <option selected hidden disabled>Choose  . . .</option>
                     <option value="male" <%= resObj.gender === 'male'? 'selected':'' %>>male</option>
                     <option value="female" <%= resObj.gender === 'female'? 'selected':'' %>>female</option>
                 </select>

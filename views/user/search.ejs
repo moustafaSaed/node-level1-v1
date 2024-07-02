@@ -9,24 +9,32 @@
         <%= myTitle %>
     </title>
     <style>
-
     </style>
 </head>
 
 <body>
     <!-- HEADER -->
-    <%- include('./Components/header.ejs',{current:'info'}) %>
+    <%- include('../Components/header.ejs',{current:''}) %>
         <!-- MAIN -->
         <main>
             <% if (resArr.length === 0) { %>
-                <div class="no-data">
-                    <h1 class="info">there is no data available</h1>
-                    <a href="/user/add"><div class="btn light-btn">go to add data</div></a>
-                </div>
+                <% if (searchText.length === 0 ) { %>
+                    <div class="no-data">
+                        <h1 class="info">please write the name you search in the search text</h1>
+                        <a href="/"><div class="btn light-btn">return to home</div></a>
+                    </div>
+                <% } %>
+                <% if (searchText.length !== 0 ) { %>
+                    <div class="no-data">
+                        <h1 class="info">we didn't find any result about : " <%= searchText %> "</h1>
+                        <a href="/"><div class="btn light-btn">return to home</div></a>
+                    </div>
+                <% } %>
+            
             <% } %>
 
             <% if (resArr.length > 0) { %>
-                <h1>cutsomer's data</h1>
+                <h1>all results about : <%= searchText %></h1>
                 <table>
                     <thead>
                         <tr>
@@ -75,10 +83,10 @@
                             <% }) %>
                     </tbody>
                 </table>
-                <a href="/user/add"><div class="btn light-btn">add another cutsomer</div></a>
+                <a href="/"><div class="btn light-btn">show all data</div></a>
             <% } %>
         </main>
-        <%- include('./Components/script.ejs') %>
+        <%- include('../Components/script.ejs') %>
 </body>
 
 </html>

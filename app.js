@@ -39,6 +39,21 @@ app.get('/', (req, res) => {
         }
         )
 })
+// search
+app.post('/search', (req, res) => {
+    const searchText = req.body.searchText.trim();
+    User.find({$or: [{first: searchText},{last: searchText}]}) // get data from User
+        .then((result) => { // if get data success
+            // result : array of objects
+            
+            res.render("user/search", { myTitle: 'Mous | Search', resArr: result, moment:moment , searchText: searchText});
+        }
+        )
+        .catch((err) => { // if error
+            console.log(err);
+        }
+        )
+})
 app.get('/user/add', (req, res) => {
     res.render("user/add", { myTitle: 'Mous | add' });
 })
