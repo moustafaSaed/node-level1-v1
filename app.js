@@ -27,11 +27,14 @@ liveReloadServer.server.once("connection", () => {
 });
 // for liveReload   -- End
 
+
+
+
 app.get('/', (req, res) => {
     User.find() // get data from User
         .then((result) => { // if get data success
             // result : array of objects
-            res.render("home", { myTitle: 'Mous | Home', resArr: result, moment:moment});
+            res.render("home", { myTitle: 'Mous | Home', resArr: result, moment: moment });
         }
         )
         .catch((err) => { // if error
@@ -42,11 +45,11 @@ app.get('/', (req, res) => {
 // search
 app.post('/search', (req, res) => {
     const searchText = req.body.searchText.trim();
-    User.find({$or: [{first: searchText},{last: searchText}]}) // get data from User
+    User.find({ $or: [{ first: searchText }, { last: searchText }] }) // get data from User
         .then((result) => { // if get data success
             // result : array of objects
-            
-            res.render("user/search", { myTitle: 'Mous | Search', resArr: result, moment:moment , searchText: searchText});
+
+            res.render("user/search", { myTitle: 'Mous | Search', resArr: result, moment: moment, searchText: searchText });
         }
         )
         .catch((err) => { // if error
@@ -59,7 +62,7 @@ app.get('/user/add', (req, res) => {
 })
 
 app.get('/success', (req, res) => {
-    res.render("success", { myTitle: 'Mous | success'});
+    res.render("success", { myTitle: 'Mous | success' });
 })
 // should be the last get 
 app.get('/edit/:id', (req, res) => {
@@ -102,7 +105,7 @@ app.get('/view/:id', (req, res) => {
         )
 })
 // DELETE REQUEST
-app.delete('/edit/:id',(req, res) => {
+app.delete('/edit/:id', (req, res) => {
     User.findByIdAndDelete(req.params.id)
         .then(() => {
             console.log('deleted successfully  ..');
